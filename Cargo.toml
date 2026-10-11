@@ -1,0 +1,36 @@
+[package]
+name = "egui-flow"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+publish = true
+description = "A data-first node editor widget for egui applications"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/faizanali2k05/egui-flow"
+documentation = "https://docs.rs/egui-flow"
+readme = "README.md"
+keywords = ["egui", "node-editor", "graph", "workflow", "visual-programming"]
+categories = ["gui", "visualization"]
+include = ["src/**", "examples/**", "benches/**", "README.md", "CHANGELOG.md", "LICENSE-*", "docs/**"]
+
+[features]
+default = ["persistence"]
+persistence = ["dep:serde_json"]
+
+[dependencies]
+egui = "0.33"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", optional = true }
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "graph_1000"
+harness = false
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lints.rust]
+unsafe_code = "forbid"
