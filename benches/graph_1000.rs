@@ -1,5 +1,5 @@
 use criterion::{Criterion, black_box, criterion_group, criterion_main};
-use egui_flow::{Graph, Node, Point};
+use egui_flow_editor::{Graph, Node, Point};
 
 fn build_graph() -> Graph {
     let mut graph = Graph::new();

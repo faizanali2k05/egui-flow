@@ -1,6 +1,6 @@
-# egui-flow
+# egui-flow-editor
 
-`egui-flow` is a node-based editor widget for [egui](https://github.com/emilk/egui). Its graph model is independent of egui, so the same nodes and edges can be validated, persisted, tested, and rendered in different front ends.
+`egui-flow-editor` is a node-based editor widget for [egui](https://github.com/emilk/egui). Its graph model is independent of egui, so the same nodes and edges can be validated, persisted, tested, and rendered in different front ends.
 
 Use it for workflow builders, audio routing, state machines, visual programming tools, and AI pipelines. It is a UI component rather than a workflow runtime, layout solver, or access-control system; applications still own execution, persistence policy, and authorization.
 
@@ -8,7 +8,7 @@ Use it for workflow builders, audio routing, state machines, visual programming 
 
 ```toml
 [dependencies]
-egui-flow = "0.1"
+egui-flow-editor = "0.1"
 ```
 
 The default `persistence` feature adds JSON graph persistence through `serde_json`. Disable default features when an application supplies its own persistence format.
@@ -16,7 +16,7 @@ The default `persistence` feature adds JSON graph persistence through `serde_jso
 ## 30-second example
 
 ```rust
-use egui_flow::{EdgeStyle, FlowEditor, Graph, Node, Point, PortRef};
+use egui_flow_editor::{EdgeStyle, FlowEditor, Graph, Node, Point, PortRef};
 
 let mut graph = Graph::new();
 let source = graph.add_node(Node::new("Source", Point::new(20.0, 20.0)).output("value", "number"));
@@ -28,7 +28,7 @@ graph.connect(from, to, EdgeStyle::Bezier)?;
 let mut editor = FlowEditor::new();
 *editor.editor.graph_mut() = graph;
 // In an egui panel: editor.show(ui);
-# Ok::<(), egui_flow::ConnectionError>(())
+# Ok::<(), egui_flow_editor::ConnectionError>(())
 ```
 
 The complete runnable model examples are in `examples/`; an application normally calls `editor.show(ui)` from its egui panel.
@@ -43,9 +43,9 @@ Create a node with `Node::new`, add ports with `.input` and `.output`, and place
 
 ```rust
 # #[cfg(feature = "persistence")]
-fn save_and_restore(graph: &egui_flow::Graph) -> Result<egui_flow::Graph, Box<dyn std::error::Error>> {
+fn save_and_restore(graph: &egui_flow_editor::Graph) -> Result<egui_flow_editor::Graph, Box<dyn std::error::Error>> {
     let json = graph.to_json()?;
-    Ok(egui_flow::Graph::from_json(&json)?)
+    Ok(egui_flow_editor::Graph::from_json(&json)?)
 }
 ```
 
@@ -59,6 +59,6 @@ For large graphs, keep expensive application work outside `show`, use stable met
 
 ## Alternatives and stability
 
-Use egui’s low-level painter APIs for a one-off diagram, a specialized graph library for automatic layout, or a full workflow engine when execution and scheduling are the primary problem. `egui-flow` follows semantic versioning; the 0.1 API may receive additive changes and will document breaking changes before 1.0.
+Use egui’s low-level painter APIs for a one-off diagram, a specialized graph library for automatic layout, or a full workflow engine when execution and scheduling are the primary problem. `egui-flow-editor` follows semantic versioning; the 0.1 API may receive additive changes and will document breaking changes before 1.0.
 
 See [architecture](docs/architecture.md), [design decisions](docs/design-decisions.md), [security](docs/security.md), and [performance](docs/performance.md). The project is dual-licensed under MIT or Apache-2.0.

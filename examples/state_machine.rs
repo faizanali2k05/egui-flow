@@ -1,4 +1,4 @@
-use egui_flow::{Graph, Node, Point};
+use egui_flow_editor::{Graph, Node, Point};
 
 fn main() {
     let mut graph = Graph::new();

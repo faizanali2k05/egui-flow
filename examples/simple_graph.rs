@@ -1,4 +1,4 @@
-use egui_flow::{EdgeStyle, Graph, Node, Point, PortRef};
+use egui_flow_editor::{EdgeStyle, Graph, Node, Point, PortRef};
 
 fn main() {
     let mut graph = Graph::new();

@@ -227,7 +227,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "egui-flow"
+name = "egui-flow-editor"
 version = "0.1.0"
 dependencies = [
  "criterion",
